@@ -55,7 +55,7 @@ class Attendance(models.Model):
     periods = models.IntegerField(validators=[MinValueValidator(1),
                                        MaxValueValidator(8)])
     class Meta:
-        unique_together = (("stud_id", "course_id","date"),)
+        unique_together = (("stud_id", "course_id","date","periods"),)
 
 class Slot(models.Model):
     period_id=models.IntegerField(validators=[MinValueValidator(1),
@@ -86,7 +86,7 @@ class Timetable(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     periods_id = models.ForeignKey(Slot, on_delete=models.CASCADE)
     class Meta:
-        unique_together = (("class_id", "course_id","day","periods"),)
+        unique_together = (("class_id", "course_id","day"),)
 
 class Teache(models.Model):
     fac_id = models.ForeignKey(Faculty, on_delete=models.CASCADE)
